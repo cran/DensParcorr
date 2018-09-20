@@ -9,7 +9,7 @@ DensParcorr is the main function in this package. prec2dens and prec2part are su
 }
 \usage{
 DensParcorr(data,select=FALSE,dens.level="plateau",plateau.thresh=0.01,
-            Parcorr.est=NULL,directory=NULL)
+            Parcorr.est=NULL,directory=NULL,lambda=NULL)
 }
 
 \arguments{
@@ -19,6 +19,7 @@ DensParcorr(data,select=FALSE,dens.level="plateau",plateau.thresh=0.01,
   \item{plateau.thresh}{The criterion to select the plateau. This option is valid only when \code{select}=TRUE. See Details. Default value is 0.01.}
   \item{Parcorr.est}{Previous output from DensParcorr function. }
   \item{directory}{The directory to output the figures and precision matrices and the partial correlation matrices. The default (\code{directory}=\code{NULL}) is to output in the current working directory.}
+  \item{lambda}{The lambda value for estimating the precision matrix ranging from 0 to 1. The default is \code{NULL}. If specified, no extra Dens-based step will be conducted. }
 }
 
 \details{

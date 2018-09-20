@@ -1,8 +1,8 @@
-b482d91d1af7fd4cda06f20359d56b9c *DESCRIPTION
+8ac8533a9e917c7f76fe9d38a409781e *DESCRIPTION
 b21b2dc7537ad8e31af6fb9be24d1c9a *NAMESPACE
-fe4456773bf7546ecafdce3a4b98b1c2 *R/DensParcorr.R
+a48e60c49b5d35b3d3bbff1a4f287173 *R/DensParcorr.R
 d7dd7454423ca8c4fb68cbc90f6106d5 *R/prec2dens.R
 11bdf233e1c4e6dba9fb03ecaa27cd19 *R/prec2part.R
-24ef183de1d6144b04de5f6c76876326 *man/DensParcorr.Rd
+fda50fde5751f73f00410f507b4ff868 *man/DensParcorr.Rd
 1fd63f72645d149b79e81fbc6af8085c *man/prec2dens.Rd
 de8e465e805ddaa2d89e47c771718684 *man/prec2part.Rd

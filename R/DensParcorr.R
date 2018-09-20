@@ -4,10 +4,46 @@ DensParcorr <- function(data,
                         dens.level = "plateau",
                         plateau.thresh = 0.01,
                         Parcorr.est = NULL,
-                        directory = NULL
+                        directory = NULL,
+                        lambda = NULL
                         )
 { 
   if(is.null(directory)) directory = paste(getwd(),"/DensParcorr.output",sep="")
+  
+  dir.create(directory)
+  
+  if(!is.null(lambda))
+  {
+    Prec.mat = clime(data,lambda = lambda)$Omegalist[[1]]
+    Par.mat = prec2part(Prec.mat)
+    
+    png(filename = paste(directory,"/partial.correlation.matrix.png",sep=""))
+    heatmap.2(Par.mat,Rowv=F,Colv=F,scale="none",trace="none",density.info="none",xlab="",ylab="",
+              main=paste("Lambda=",round(lambda,3),sep=""),col=bluered,dendrogram="none")
+    dev.off()
+    write.table(Par.mat,file = 
+                  paste(directory,"/partial.correlation.matrix_Partial.lambda_",round(lambda,3),".txt",sep=""),
+                col.names = F,row.names = F)
+    
+    png(filename = paste(directory,"/precision.matrix.png",sep=""))
+    heatmap.2(Par.mat,Rowv=F,Colv=F,scale="none",trace="none",density.info="none",xlab="",ylab="",
+              main=paste("Lambda=",round(lambda,3),sep=""),col=bluered,dendrogram="none")
+    dev.off()
+    write.table(Prec.mat ,file = 
+                  paste(directory,"/precision.matrix_Precision.lambda_",round(lambda,3),".txt",sep=""),
+                col.names = F,row.names = F)
+    
+    print("Figures, Estimated Precision Matrices and Partial Correlation are outputed in ")
+    print(directory)
+    
+    Results = list()
+    Results$selected.partial.corr = Par.mat
+    Results$selected.precision = Prec.mat
+    Results$selected.lambda = lambda
+    Results$selection.method = paste("Lambda =",lambda)
+    
+    return(Results)
+  }
   
   lambda.max=0.6
   lambda.min=1e-8
@@ -49,7 +85,7 @@ DensParcorr <- function(data,
     dens = c(prec2dens(Prec.mat[[1]]),dens)
   }
 
-  dir.create(directory)
+  
 
   #### Based on different Tuning Parameter Selection Method ####
   if(select)
